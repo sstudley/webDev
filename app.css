@@ -1,0 +1,20 @@
+h1 {
+  color: rgba(0,200,100,.8);
+  /* border-color: purple;
+  border-width: 5px;
+  border-style: solid; */
+border: 2px solid  rgb(225, 100, 80);
+
+}
+li {
+  color :#4b0082;
+}
+h4 {
+  background:rgb(225, 100, 80);
+}
+body {
+  background :pink;
+  /* background: url(https://img10.deviantart.net/8be5/i/2011/121/8/a/drawn_wood_grain_texture_by_german_popsicle-d3fdjmd.jpg);
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
