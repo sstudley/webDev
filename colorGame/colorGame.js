@@ -102,8 +102,3 @@ function changeColors(color) {
   h1.style.backgroundColor = color;
 }
 
-function runRandom(num) {
-  for (i = 0; i <= num; i++) {
-    console.log(Math.floor(Math.random() * colors.length));
-  }
-}
