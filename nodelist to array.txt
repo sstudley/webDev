@@ -1,0 +1,2 @@
+var elArray = [].slice.call(document.querySelectorAll('td code a'));
+var unique = elArray.filter((v, i, a) => a.indexOf(v) === i); 
