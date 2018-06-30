@@ -6,41 +6,53 @@
   <title>Circles</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="circles.css" />
+
   <script type="text/javascript" src="paper-full.js"></script>
+  <script type="text/javascript" src="howler.min.js"></script>
   <!-- Define inlined PaperScript associate it with myCanvas -->
 <script type="text/paperscript" canvas="myCanvas">
 
-  function randColorSegHex(){
-    var seg = (Math.floor(Math.random() * 256)).toString(16);
-    return seg;
-  }
+  var sound1 = new Howl({
+    src: ['sounds/bubbles.mp3']
+  });
+  var sound2 = new Howl({
+    src: ['sounds/clay.mp3']
+  });
+  
+    var circles = [];
 
-  function randomColorHex() {
-    // pick random red
-    var r = randColorSegHex();
-    // pick random green
-    var g = randColorSegHex();
-    // pick random blue
-    var b = randColorSegHex();
-    // make return string
-    return "#" + r + g + b;
-  }
+  function onKeyDown(event) {   
+    var maxPoint = new Point( view.size.width, view.size.height);
+    var randomPoint = Point.random();
+    var point = maxPoint * randomPoint;  
+    var newCircle = new Path.Circle(point, 500);
+    if(event.key === "a"){
+      sound1.play();
+      newCircle.fillColor = "#2c3e50";
+    }
+    if(event.key === "s"){
+      sound2.play();
+      newCircle.fillColor = "#16a085";
+    }else{
+      newCircle.fillColor = "orange";
+    }
 
-  function randSize(num){
-    var size = Math.floor(Math.random() * num);
-    return size;
-  }
+    
+    circles.push(newCircle);
+   }
 
-  function randSizeMinMax(max, min){
-    var size = Math.floor(Math.random() * ((max - min)+ 1) + min);
-    return size;
-  }
+ 
+   function onFrame(event){
+     for(var i = 0; i < circles.length; i++){
+       circles[i].fillColor.hue += 1;
+       circles[i].scale(.9);
+     }
+   
+    
+     
 
-for(var i = 0; i < 1000; i+= 100){
-  for(var j = 0; j< 1000; j+= 100){
-    new Path.Circle(new Point(i , j), randSizeMinMax(30, 5)).fillColor = randomColorHex();
-  }
-}
+   }
+
 </script>
 </head>
 <body>
