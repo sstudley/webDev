@@ -1,0 +1,14 @@
+{
+  "name": "oop",
+  "version": "1.0.0",
+  "description": "erty",
+  "main": "app.js",
+  "scripts": {
+    "test": "na"
+  },
+  "author": "SBS",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
