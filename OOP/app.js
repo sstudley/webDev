@@ -1,5 +1,3 @@
-// console.log('starting app');
-
 const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
@@ -8,9 +6,10 @@ const notes = require('./notes.js');
 
 const argv =yargs.argv;
 let command = argv._[0];
-// console.log('Command: ', command);
-// console.log('Yargs', argv);
 
+//  ------------------------
+//  add
+// -------------------------
 if (command === 'add') {
    let note =  notes.addNote(argv.title, argv.body);
    if (note){
@@ -19,9 +18,19 @@ if (command === 'add') {
    }else {
     console.log('Please change duplicated title. ')
    }
-} else if (command === 'list') {
-    notes.getAll();
-} else if (command === 'read') {
+}
+//  ------------------------
+// list
+//  ------------------------
+ else if (command === 'list') {
+   let allNotes = notes.getAll();  
+   console.log(`Printing ${allNotes.length} note(s).`)
+   allNotes.forEach((note) => notes.logMesg(note));
+}
+//  ------------------------
+//  read
+//  ------------------------
+else if (command === 'read') {
     let note = notes.getNote(argv.title);
     if (note){
       console.log('Note read...');
@@ -29,10 +38,18 @@ if (command === 'add') {
     }else {
       console.log('Note not found.')
      }
-} else if (command === 'remove') {
+} 
+//  ------------------------
+// remove
+//  ------------------------
+else if (command === 'remove') {
     let nRemove = notes.removeNote(argv.title);
     let message = nRemove ? `Note titled '${argv.title}' removed` : `Note titled '${argv.title}' not found`;
     console.log(message);
-} else {
+} 
+//  ------------------------
+// unrecognized
+//  ------------------------
+else {
   console.log('Command not recognized');
 }
